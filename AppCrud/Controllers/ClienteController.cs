@@ -34,5 +34,29 @@ namespace AppCrud.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Lista));
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> Editar(int id)
+		{
+			Cliente cliente = await _context.Clientes.FirstAsync(cl => cl.Id == id);
+            return View(cliente);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Editar(Cliente cliente)
+		{
+			_context.Clientes.Update(cliente);
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Lista));
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Eliminar(int id)
+		{
+			Cliente cliente = await _context.Clientes.FirstAsync(cl => cl.Id == id);
+			_context.Clientes.Remove(cliente);
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Lista));
+		}
 	}
 }
