@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<AppCrud.Models.Cliente>
+<div class="row">
+	<div class="col-sm-8 offset-sm-2">
+		<h2>
+			Lista de Clientes
+		</h2>
+		<a asp-controller="Cliente" asp-action="Nuevo" class="btn btn-success my-2">Crear cliente</a>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Acciones</th>
+					<th>Id</th>
+					<th>Id Usuario</th>
+					<th>Id Municipio</th>
+					<th>Direccion</th>
+					<th>Telefono</th>
+					<th>Sexo</th>
+					<th>Tipo de Sangre</th>
+					<th>Eps</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+				<tr>
+					<td>
+						<a>Editar</a>
+						<a>Eliminar</a>
+					</td>
+					<td>@item.Id</td>
+					<td>@item.IdUsuario</td>
+					<td>@item.IdMunicipio</td>
+					<td>@item.Direccion</td>
+					<td>@item.Telefono</td>
+					<td>@item.Sexo</td>
+					<td>@item.TipoDeSangre</td>
+					<td>@item.Eps</td>
+					<td>@(item.Estado ? "Activo" : "No activo")</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

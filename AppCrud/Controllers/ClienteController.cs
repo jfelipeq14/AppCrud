@@ -20,5 +20,19 @@ namespace AppCrud.Controllers
             List<Cliente> listaClientes = await _context.Clientes.ToListAsync();
             return View(listaClientes);
         }
-    }
+
+        [HttpGet]
+        public IActionResult Nuevo()
+        {
+            return View();
+        }
+
+		[HttpPost]
+		public async Task<IActionResult> Nuevo(Cliente cliente)
+		{
+            await _context.Clientes.AddAsync(cliente);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Lista));
+		}
+	}
 }
