@@ -38,7 +38,7 @@ namespace AppCrud.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Editar(int id)
 		{
-			Cliente cliente = await _context.Clientes.FirstAsync(cl => cl.Id == id);
+			Cliente cliente = await _context.Clientes.FirstAsync(cl => cl.IdCliente == id);
             return View(cliente);
 		}
 
@@ -53,7 +53,7 @@ namespace AppCrud.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Eliminar(int id)
 		{
-			Cliente cliente = await _context.Clientes.FirstAsync(cl => cl.Id == id);
+			Cliente cliente = await _context.Clientes.FirstAsync(cl => cl.IdCliente == id);
 			_context.Clientes.Remove(cliente);
 			await _context.SaveChangesAsync();
 			return RedirectToAction(nameof(Lista));

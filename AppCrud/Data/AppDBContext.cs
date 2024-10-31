@@ -11,13 +11,15 @@ namespace AppCrud.Data
         }
 
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Servicios> Servicios { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cliente>(tb =>
             {
-                tb.HasKey(col => col.Id);
-                tb.Property(col => col.Id).UseIdentityColumn().ValueGeneratedOnAdd();
+                tb.HasKey(col => col.IdCliente);
+                tb.Property(col => col.IdCliente).UseIdentityColumn().ValueGeneratedOnAdd();
 
                 tb.Property(col => col.IdUsuario).IsRequired();
                 tb.Property(col => col.IdMunicipio).IsRequired();
@@ -30,6 +32,23 @@ namespace AppCrud.Data
             });
 
             modelBuilder.Entity<Cliente>().ToTable("Cliente");
+
+
+            modelBuilder.Entity<Servicios>(tb =>
+            {
+                tb.HasKey(col => col.IdServicios);
+                tb.Property(col => col.IdServicios).UseIdentityColumn().ValueGeneratedOnAdd();
+
+                tb.Property(col => col.IdServicio).IsRequired();
+                tb.Property(col => col.Nombre).HasMaxLength(100).IsRequired();
+                tb.Property(col => col.Categoria).HasMaxLength(50).IsRequired();
+                tb.Property(col => col.Estado).HasDefaultValue(true);
+            });
+
+            modelBuilder.Entity<Servicios>().ToTable("servicios");
+
         }
+
+
     }
 }
