@@ -5,7 +5,7 @@
 namespace AppCrud.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimeraMigracion : Migration
+    public partial class servicios : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +14,7 @@ namespace AppCrud.Migrations
                 name: "Cliente",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    IdCliente = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdUsuario = table.Column<int>(type: "int", nullable: false),
                     IdMunicipio = table.Column<int>(type: "int", nullable: false),
@@ -27,7 +27,22 @@ namespace AppCrud.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cliente", x => x.Id);
+                    table.PrimaryKey("PK_Cliente", x => x.IdCliente);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Servicio",
+                columns: table => new
+                {
+                    IdServicio = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Categoria = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Servicio", x => x.IdServicio);
                 });
         }
 
@@ -36,6 +51,9 @@ namespace AppCrud.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Cliente");
+
+            migrationBuilder.DropTable(
+                name: "Servicio");
         }
     }
 }

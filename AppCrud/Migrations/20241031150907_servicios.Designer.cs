@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCrud.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241030160913_Primera Migracion")]
-    partial class PrimeraMigracion
+    [Migration("20241031150907_servicios")]
+    partial class servicios
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace AppCrud.Migrations
 
             modelBuilder.Entity("AppCrud.Models.Cliente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdCliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"));
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -68,9 +68,37 @@ namespace AppCrud.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdCliente");
 
                     b.ToTable("Cliente", (string)null);
+                });
+
+            modelBuilder.Entity("AppCrud.Models.Servicio", b =>
+                {
+                    b.Property<int>("IdServicio")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdServicio"));
+
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Estado")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("IdServicio");
+
+                    b.ToTable("Servicio", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -33,18 +33,18 @@
 						<a
 							asp-controller="Cliente"
 							asp-action="Editar"
-IdCliente					asp-route-id="@item.Id"
+IdCliente					asp-route-id="@item.IdCliente"
 							class="btn btn-primary"
 						>Editar</a>
 						<a
 							asp-controller="Cliente"
 							asp-action="Eliminar"
-							asp-route-id="@item.Id"
+							asp-route-id="@item.IdCliente"
 							onclick="return confirmar()"
 							class="btn btn-danger"
 						>Eliminar</a>
 					</td>
-					<td>@item.Id</td>
+					<td>@item.IdCliente</td>
 					<td>@item.IdUsuario</td>
 					<td>@item.IdMunicipio</td>
 					<td>@item.Direccion</td>
